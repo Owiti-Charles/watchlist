@@ -8,7 +8,7 @@ def index():
     message = 'Hello Flask'
     return render_template('index.html',message = message)
 
-@app.route('/movie/<int:movie_id>')
+@app.route('/movie/<int:id>')
 def movie(id):
 
     '''
