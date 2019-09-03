@@ -5,13 +5,14 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
-    message = 'Hello Flask'
-    return render_template('index.html',message = message)
+    title = 'Welcome To The Best Movie Online Movies Review Store'
+    return render_template('index.html',title = title)
 
 @app.route('/movie/<int:id>')
 def movie(id):
 
-    '''
+    """
     View movie page function that returns the movie details page and its data
-    '''
-    return render_template('movies.html',id = id)
+    """
+    title = f'Your reviweing {id}'
+    return render_template('movies.html', title = title)
