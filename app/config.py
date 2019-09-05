@@ -4,6 +4,7 @@ class Config:
 
     """
     MOVIE_API_BASE_URL ='https://api.themoviedb.org/3/movie/{}?api_key={}'
+    SECRET_KEY = '<Flask WTF Secret Key>'
 
 class ProdConfig(Config):
     """

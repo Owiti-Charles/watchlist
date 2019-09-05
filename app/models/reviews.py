@@ -11,3 +11,14 @@ class Review:
     @classmethod
     def clear_all_reviews(cls):
         Review.reviews.clear()
+
+    @classmethod
+    def get_reviews(cls,id):
+
+        response = []
+
+        for review in cls.reviews:
+            if review.movie_id == id:
+                response.append(review)
+
+        return response
