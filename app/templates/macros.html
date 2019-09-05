@@ -1,0 +1,16 @@
+<!-- Macros are the Jinja equivalent to python functions. It allows us to 
+    group blocks of our code's logic that will be reused multiple times. -->
+{% macro displayMovieList(movie_list) %}
+    
+    {% for movie in movie_list %}
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-2 movie-card">
+        <img src="{{ movie.image }}" alt="{{ movie.title }} poster" class="img-responsive">
+        <li class="text-center">
+            <a href="/movie/{{movie.id}}">
+                {{ movie.title|truncate(10)}}</a>
+        </li>
+    </div>
+
+    {% endfor %}
+    
+{% endmacro %}

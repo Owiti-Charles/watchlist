@@ -1,0 +1,18 @@
+ul
+{
+    list-style-type: none;
+}
+ .movie-card  a
+ {
+      color: green;
+ }
+ .movie-card  a:hover
+ {
+     padding-bottom: 2%;
+     border-bottom: 1px solid green;
+ }
+ .text-cente{
+     margin-bottom: 2%;
+     font-size: 25px;
+     color: green;
+ }
