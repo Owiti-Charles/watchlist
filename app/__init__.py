@@ -1,12 +1,20 @@
 from flask import Flask
-from .config import DevConfig
+from config import config_options
 from flask_bootstrap import Bootstrap
+from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__, instance_relative_config = True)
-app.config.from_object(DevConfig)
 
-bootstrap = Bootstrap(app)
+def create_app(config_name):
+    app = Flask(__name__, instance_relative_config = True)
+    app.config.from_object(config_options[config_name])
 
-from app import views 
-from app import error
+    from .main import main as main_blueprint
+    app.register_blueprint(main_blueprint)
+
+    from .requests import config_request
+    config_request(app)
+    
+    bootstrap = Bootstrap(app)
+    db = SQLAlchemy()
+    return app
  
