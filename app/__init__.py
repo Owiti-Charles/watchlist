@@ -3,6 +3,8 @@ from config import config_options
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 
+bootstrap = Bootstrap()
+db = SQLAlchemy()
 
 def create_app(config_name):
     app = Flask(__name__, instance_relative_config = True)
@@ -14,7 +16,9 @@ def create_app(config_name):
     from .requests import config_request
     config_request(app)
     
-    bootstrap = Bootstrap(app)
-    db = SQLAlchemy()
+   
+
+    bootstrap.init_app(app)
+    db.init_app(app)
     return app
  
