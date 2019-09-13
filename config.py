@@ -10,7 +10,7 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     MOVIE_API_KEY = os.environ.get('MOVIE_API_KEY')
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:mikey123@localhost/watchlist'
-
+    UPLOADED_PHOTOS_DEST ='app/static/photos'
 class ProdConfig(Config):
     """
     production config
