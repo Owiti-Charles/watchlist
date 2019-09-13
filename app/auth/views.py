@@ -4,6 +4,7 @@ from .forms import RegForm,LoginForm
 from flask_login import login_user,login_required, logout_user
 from .. import db
 from ..models import User, Review
+from ..email import mail_message
 from wtforms import StringField,PasswordField,BooleanField,SubmitField
 
 @auth.route('/login',methods=['GET','POST'])
@@ -32,6 +33,7 @@ def register():
         user = User(email = form.email.data, username = form.username.data, password = form.password.data)
         db.session.add(user)
         db.session.commit()
+        mail_message("Welcome to watchlist","email/welcome_user",user.email,user=user)
         return redirect(url_for('auth.login'))
         title = 'Create New Account'
     return render_template('auth/register.html',regform = form)
