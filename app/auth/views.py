@@ -1,22 +1,24 @@
 from . import auth
-from flask import render_template,request,flash,redirect,url_for
+from flask import render_template,request,flash,redirect,abort,url_for
 from .forms import RegForm,LoginForm
 from flask_login import login_user,login_required, logout_user
 from .. import db
-from ..models import User
+from ..models import User, Review
+from wtforms import StringField,PasswordField,BooleanField,SubmitField
 
-@auth.route('/login')
+@auth.route('/login',methods=['GET','POST'])
 def login():
     login_form = LoginForm()
     if login_form.validate_on_submit():
-        user = User.query.filter_by(email = login_form.data).first()
+        user = User.query.filter_by(email = login_form.email.data).first()
         if user is not None and user.verify_password(login_form.password.data):
             login_user(user,login_form.remember.data)
             return redirect(request.args.get('next') or url_for('main.index'))
-        flash('Invalid username or Password')
-    title = 'Login'
-    return render_template('auth/login.html',loginform = login_form, title = title)
 
+        flash('Invalid username or Password')
+
+    title = "watchlist login"
+    return render_template('auth/login.html',loginform = login_form,title=title)
 @auth.route('/logout')
 @login_required
 def logout():

@@ -7,7 +7,7 @@ from wtforms import ValidationError
 
 class LoginForm(FlaskForm):
     email = StringField('Your Email Address',validators=[Required()])
-    password = PasswordField('Password',validators=[Required])
+    password = PasswordField('Password',validators=[Required()])
     remember = BooleanField('Remember Me!')
     submit = SubmitField('Login')
  
